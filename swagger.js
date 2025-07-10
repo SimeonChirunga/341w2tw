@@ -8,6 +8,7 @@ const doc = {
     },
     host: 'localhost:8080',
     schemes: ['http'],
+    apis: ['./routes/*.js']
 };
 const outputFile = './swagger.json';
 const endpointsFiles = ['./routes/index.js'];

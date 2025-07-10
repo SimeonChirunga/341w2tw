@@ -1,17 +1,18 @@
 const routes = require('express').Router();
 const temple = require('./temple');
+const swaggerRouter = require('./swagger'); // Import the swagger router
 
+// Mount Swagger UI under /api-docs
+routes.use('/api-docs', swaggerRouter);
 
-routes.use('/', require('./swagger'));
+// Your other routes
 routes.use('/temples', temple);
-routes.use(
-  '/',
-  (docData = (req, res) => {
-    let docData = {
-      documentationURL: 'https://nathanbirch.github.io/nathan-byui-api-docs',
-    };
-    res.send(docData);
-  })
-);
+
+routes.get('/', (req, res) => {
+    res.send({
+        message: 'Welcome to the Temple API',
+        documentationURL: 'http://localhost:8080/api-docs'
+    });
+});
 
 module.exports = routes;
